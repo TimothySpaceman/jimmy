@@ -11,6 +11,7 @@ type Props = {
 }
 
 export default function PositionEditor({node, onChange}: Props) {
+    const id = crypto.randomUUID();
     const [isOpen, setIsOpen] = useState(false);
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -38,9 +39,9 @@ export default function PositionEditor({node, onChange}: Props) {
             <CollapsibleContent>
                 <FieldGroup className="gap-1">
                     <Field className="gap-2" orientation="responsive">
-                        <FieldLabel htmlFor="node.position.top">Top</FieldLabel>
+                        <FieldLabel htmlFor={`${id}-top`}>Top</FieldLabel>
                         <Input
-                            id="node.position.top"
+                            id={`${id}-top`}
                             name="top"
                             type="number"
                             value={node.position?.top ?? ""}
@@ -48,9 +49,9 @@ export default function PositionEditor({node, onChange}: Props) {
                         />
                     </Field>
                     <Field className="gap-2" orientation="responsive">
-                        <FieldLabel htmlFor="node.position.bottom">Bottom</FieldLabel>
+                        <FieldLabel htmlFor={`${id}-bottom`}>Bottom</FieldLabel>
                         <Input
-                            id="node.position.bottom"
+                            id={`${id}-bottom`}
                             name="bottom"
                             type="number"
                             value={node.position?.bottom ?? ""}
@@ -58,9 +59,9 @@ export default function PositionEditor({node, onChange}: Props) {
                         />
                     </Field>
                     <Field className="gap-2" orientation="responsive">
-                        <FieldLabel htmlFor="node.position.left">Left</FieldLabel>
+                        <FieldLabel htmlFor={`${id}-left`}>Left</FieldLabel>
                         <Input
-                            id="node.position.left"
+                            id={`${id}-left`}
                             name="left"
                             type="number"
                             value={node.position?.left ?? ""}
@@ -68,9 +69,9 @@ export default function PositionEditor({node, onChange}: Props) {
                         />
                     </Field>
                     <Field className="gap-2" orientation="responsive">
-                        <FieldLabel htmlFor="node.position.right">Right</FieldLabel>
+                        <FieldLabel htmlFor={`${id}-right`}>Right</FieldLabel>
                         <Input
-                            id="node.position.right"
+                            id={`${id}-right`}
                             name="right"
                             type="number"
                             value={node.position?.right ?? ""}

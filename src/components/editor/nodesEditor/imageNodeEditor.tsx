@@ -1,7 +1,8 @@
 import type {ImageNode} from "@/lib/core/types.ts";
+import type {WithDefaults} from "@/lib/core/defaults.ts";
 
 type Props = {
-    node: ImageNode,
+    node: WithDefaults<"image">
     onChange: (updates: Partial<ImageNode>) => void,
 }
 

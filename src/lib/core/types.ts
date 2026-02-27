@@ -16,22 +16,28 @@ export type BasicNode = {
     size: Size
 }
 
+export type TextAlign = "left" | "center" | "right" | "justify"
+export type VerticalAlign = "start" | "end" | "center"
+export type FontStyle = "normal" | "italic" | "oblique"
+
 export type TextNode = BasicNode & {
     type: "text"
     content: string
     color?: string
-    textAlign?: "left" | "center" | "right" | "justify"
-    verticalAlign?: "start" | "end" | "center"
+    textAlign?: TextAlign
+    verticalAlign?: VerticalAlign
     fontFamily?: string
     fontSize?: number
     fontWeight?: number
-    fontStyle?: "normal" | "italic" | "oblique"
+    fontStyle?: FontStyle
 }
+
+export type Fit = "cover" | "contain" | "fill" | "scale-down" | "none"
 
 export type ImageNode = BasicNode & {
     type: "image"
     src: string
-    fit?: "cover" | "contain" | "fill" | "scale-down" | "none"
+    fit?: Fit
 }
 
 export type JimmyNodeMap = {

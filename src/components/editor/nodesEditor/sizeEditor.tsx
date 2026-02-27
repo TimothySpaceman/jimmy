@@ -11,6 +11,7 @@ type Props = {
 }
 
 export default function SizeEditor({node, onChange}: Props) {
+    const id = crypto.randomUUID();
     const [isOpen, setIsOpen] = useState(false);
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -37,9 +38,9 @@ export default function SizeEditor({node, onChange}: Props) {
             <CollapsibleContent>
                 <FieldGroup className="gap-1">
                     <Field className="gap-2" orientation="responsive">
-                        <FieldLabel htmlFor="node.size.width">Width</FieldLabel>
+                        <FieldLabel htmlFor={`${id}-width`}>Width</FieldLabel>
                         <Input
-                            id="node.size.width"
+                            id={`${id}-width`}
                             name="width"
                             type="number"
                             min={1}
@@ -48,9 +49,9 @@ export default function SizeEditor({node, onChange}: Props) {
                         />
                     </Field>
                     <Field className="gap-2" orientation="responsive">
-                        <FieldLabel htmlFor="node.size.height">Height</FieldLabel>
+                        <FieldLabel htmlFor={`${id}-height`}>Height</FieldLabel>
                         <Input
-                            id="node.size.height"
+                            id={`${id}-height`}
                             name="height"
                             type="number"
                             min={1}

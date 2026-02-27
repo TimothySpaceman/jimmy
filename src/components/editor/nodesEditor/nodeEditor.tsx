@@ -4,6 +4,8 @@ import {Card} from "@/components/ui/card.tsx";
 import SizeEditor from "@/components/editor/nodesEditor/sizeEditor";
 import PositionEditor from "@/components/editor/nodesEditor/positionEditor.tsx";
 import ImageNodeEditor from "./imageNodeEditor";
+import {withDefaults} from "@/lib/core/utils.ts";
+import type {WithDefaults} from "@/lib/core/defaults.ts";
 
 type Props = {
     node: JimmyNode,
@@ -11,7 +13,9 @@ type Props = {
 }
 
 export default function NodeEditor({node, onChange}: Props) {
-    return <Card className="px-3 py-2 gap-2">
+    const fullNode = withDefaults(node);
+
+    return <Card className="p-3 gap-2">
         <div className="flex justify-end">
             <span className="text-foreground/50">{node.type}</span>
         </div>
@@ -19,11 +23,17 @@ export default function NodeEditor({node, onChange}: Props) {
         <PositionEditor node={node} onChange={onChange}/>
 
         {node.type === "text" && (
-            <TextNodeEditor node={node} onChange={onChange}/>
+            <TextNodeEditor
+                node={fullNode as WithDefaults<"text">}
+                onChange={onChange}
+            />
         )}
 
         {node.type === "image" && (
-            <ImageNodeEditor node={node} onChange={onChange}/>
+            <ImageNodeEditor
+                node={fullNode as WithDefaults<"image">}
+                onChange={onChange}
+            />
         )}
     </Card>
 }

@@ -1,11 +1,12 @@
-import type {Config} from "@/lib/core"
+import type {JimmyConfig} from "@/lib/core/types.ts"
 import {type MouseEvent, useEffect, useRef, useState, type WheelEvent} from "react";
+import Node from "./nodes/node.tsx"
 
 const SCALE_SENSITIVITY = 1 / 1500;
 const DEFAULT_GAP = 25;
 
 type Props = {
-    config: Config,
+    config: JimmyConfig,
 }
 
 export default function Preview({config}: Props) {
@@ -47,8 +48,8 @@ export default function Preview({config}: Props) {
     function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
         if (e.buttons !== 1 || !lastPos.current) return;
 
-        const dx = (e.clientX - lastPos.current.x) / scale
-        const dy = (e.clientY - lastPos.current.y) / scale
+        const dx = e.clientX - lastPos.current.x
+        const dy = e.clientY - lastPos.current.y
 
         lastPos.current = {x: e.clientX, y: e.clientY}
 
@@ -74,10 +75,10 @@ export default function Preview({config}: Props) {
         onMouseMove={handleMouseMove}
     >
         <div
-            className="border border-zinc-700 overflow-hidden flex-shrink-0 origin-center"
+            className="relative border border-zinc-700 overflow-hidden flex-shrink-0 origin-center"
             style={previewStyle}
         >
-            Content
+            {config.nodes.map(node => <Node node={node} key={btoa(JSON.stringify(node))}/>)}
         </div>
     </div>
 }

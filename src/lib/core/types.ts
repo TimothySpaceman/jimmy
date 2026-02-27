@@ -31,12 +31,12 @@ export type TextNode = BasicNode & {
 export type ImageNode = BasicNode & {
     type: "image"
     src: string
-    fit?: "cover" | "contain"
+    fit?: "cover" | "contain" | "fill" | "scale-down" | "none"
 }
 
-export type Node = TextNode | ImageNode
+export type JimmyNode = TextNode | ImageNode
 
-export type Config = {
+export type JimmyConfig = {
     title: string
     description?: string
     canvas: {
@@ -44,6 +44,6 @@ export type Config = {
         height: number
     },
     backgroundColor?: string,
-    nodes: Node[],
+    nodes: JimmyNode[],
 }
 

@@ -22,7 +22,7 @@ export default function MetadataEditor() {
 
     if (!editing) {
         return <div className="flex flex-col gap-2">
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-2">
                 <h1 className="text-foreground text-2xl font-bold">
                     {config.title}
                 </h1>

@@ -12,8 +12,8 @@ export type Size = {
 
 export type BasicNode = {
     name?: string
-    position?: Position
-    size?: Size
+    position: Position
+    size: Size
 }
 
 export type TextNode = BasicNode & {

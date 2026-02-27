@@ -47,8 +47,8 @@ export type JimmyConfig = {
     canvas: {
         width: number
         height: number
+        background: string
     },
-    backgroundColor?: string
     nodes: JimmyNode[]
 }
 

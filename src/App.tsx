@@ -1,6 +1,6 @@
 import Preview from "./components/preview/preview.tsx";
 import type {JimmyConfig} from "@/lib/core/types.ts";
-import {ResizablePanel, ResizablePanelGroup} from "@/components/ui/resizable.tsx";
+import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from "@/components/ui/resizable.tsx";
 import {JimmyProvider} from "@/components/jimmyProvider/jimmyProvider.tsx";
 import Editor from "@/components/editor/editor.tsx";
 import {ThemeProvider} from "@/components/themeProvider/themeProvider.tsx";
@@ -13,7 +13,7 @@ export default function App() {
                     <ResizablePanel defaultSize="50%">
                         <Editor/>
                     </ResizablePanel>
-                    <div className="h-full w-[--spacing(0.5)] bg-border"></div>
+                    <ResizableHandle/>
                     <ResizablePanel>
                         <Preview/>
                     </ResizablePanel>
@@ -27,9 +27,9 @@ const config: JimmyConfig = {
     title: "Dev Config",
     canvas: {
         width: 1920,
-        height: 1080
+        height: 1080,
+        background: "#ff0000",
     },
-    backgroundColor: "red",
     nodes: [
         {
             type: "image",

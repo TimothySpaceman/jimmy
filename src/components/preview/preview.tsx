@@ -60,7 +60,7 @@ export default function Preview() {
     const previewStyle = {
         width: `${config.canvas.width}px`,
         height: `${config.canvas.height}px`,
-        backgroundColor: config.backgroundColor ?? "black",
+        backgroundColor: config.canvas.background,
         transform: `translate(${shift.x}px, ${shift.y}px) scale(${scale})`,
     }
 

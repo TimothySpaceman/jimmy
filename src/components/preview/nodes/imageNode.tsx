@@ -20,7 +20,7 @@ export default function ImageNode({node}: Props) {
         draggable={false}
         src={node.src}
         alt={`Failed to load ${node.name ?? "image"}`}
-        className="absolute block"
+        className="absolute block select-none"
         style={imgStyle}
     />
 }

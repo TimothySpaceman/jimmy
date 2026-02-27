@@ -1,5 +1,5 @@
 import {type MouseEvent, useEffect, useRef, useState, type WheelEvent} from "react";
-import Node from "./nodes/node.tsx"
+import Node from "@/components/preview/nodes/node.tsx"
 import {useJimmy} from "@/components/jimmyProvider/jimmyProvider.tsx";
 
 const SCALE_SENSITIVITY = 1 / 1500;
@@ -73,7 +73,7 @@ export default function Preview() {
         onMouseMove={handleMouseMove}
     >
         <div
-            className="relative border border-border overflow-hidden flex-shrink-0 origin-center"
+            className="relative box-content overflow-hidden flex-shrink-0 origin-center"
             style={previewStyle}
         >
             {config.nodes.map(node => <Node node={node} key={btoa(JSON.stringify(node))}/>)}

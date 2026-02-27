@@ -1,5 +1,5 @@
 import type {ImageNode} from "@/lib/core/types.ts"
-import {withPx} from "@/lib/core/utils.ts";
+import {withDefaults, withPx} from "@/lib/core/utils.ts";
 
 type Props = {
     node: ImageNode
@@ -7,11 +7,11 @@ type Props = {
 
 export default function ImageNode({node}: Props) {
     const positionStyle = node.position ? withPx(node.position) : {};
-
     const sizeStyle = node.size ? withPx(node.size) : {};
+    const nodeStyle = withDefaults(node);
 
     const imgStyle = {
-        objectFit: node.fit ?? "fill",
+        objectFit: nodeStyle.fit,
         ...positionStyle,
         ...sizeStyle,
     }

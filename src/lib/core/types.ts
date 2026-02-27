@@ -10,10 +10,7 @@ export type Size = {
     height?: number
 }
 
-export type NodeType = "text" | "image"
-
 export type BasicNode = {
-    type: NodeType
     name?: string
     position?: Position
     size?: Size
@@ -37,7 +34,12 @@ export type ImageNode = BasicNode & {
     fit?: "cover" | "contain" | "fill" | "scale-down" | "none"
 }
 
-export type JimmyNode = TextNode | ImageNode
+export type JimmyNodeMap = {
+    text: TextNode
+    image: ImageNode
+}
+export type JimmyNodeType = keyof JimmyNodeMap
+export type JimmyNode = JimmyNodeMap[JimmyNodeType]
 
 export type JimmyConfig = {
     title: string

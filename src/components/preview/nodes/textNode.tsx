@@ -1,25 +1,22 @@
 import type {TextNode} from "@/lib/core/types.ts"
-import {withPx} from "@/lib/core/utils.ts";
+import {withDefaults, withPx} from "@/lib/core/utils.ts";
 
 type Props = {
     node: TextNode
 }
 
 export default function TextNode({node}: Props) {
-    const positionStyle = node.position ? withPx(node.position) : {};
-    const sizeStyle = node.size ? withPx(node.size) : {};
+    const {verticalAlign, fontSize, position, size, ...nodeStyle} = withDefaults(node);
+    const positionStyle = position ? withPx(position) : {};
+    const sizeStyle = size ? withPx(size) : {};
 
     const spanStyle = {
-        color: node.color ?? "white",
-        textAlign: node.textAlign ?? "center",
-        fontFamily: node.fontFamily ?? "Trebuchet MS, sans-serif",
-        fontSize: `${node.fontSize ?? 18}px`,
-        fontWeight: `${node.fontWeight ?? "normal"}`,
-        fontStyle: node.fontStyle ?? "normal"
+        ...nodeStyle,
+        fontSize: `${fontSize}px`,
     }
 
     const divStyle = {
-        alignItems: node.verticalAlign ?? "center",
+        alignItems: verticalAlign,
         ...positionStyle,
         ...sizeStyle,
     }

@@ -22,10 +22,13 @@ export type BasicNode = {
 export type TextNode = BasicNode & {
     type: "text"
     content: string
+    color?: string
+    textAlign?: "left" | "center" | "right" | "justify"
+    verticalAlign?: "start" | "end" | "center"
     fontFamily?: string
-    fontSize?: string
-    fontWeight?: string
-    fontStyle?: string
+    fontSize?: number
+    fontWeight?: number
+    fontStyle?: "normal" | "italic" | "oblique"
 }
 
 export type ImageNode = BasicNode & {
@@ -43,7 +46,7 @@ export type JimmyConfig = {
         width: number
         height: number
     },
-    backgroundColor?: string,
-    nodes: JimmyNode[],
+    backgroundColor?: string
+    nodes: JimmyNode[]
 }
 

@@ -20,9 +20,21 @@ const config: JimmyConfig = {
             src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5HR8m_T3ZYVSLkZpeW0H7svHSjwtjmSnQklWjlb-pnuha3CeCa5Ufs_FvHyCcTvGtriFxAnsGNu1DhMPyBRE8udvkBBvHCuYMqZxp6A&s=10",
             fit: "fill",
             position: {
-                top: -25,
-                left: -25,
+                // top: -25,
+                // left: -25,
             },
+            size: {
+                width: 700,
+                height: 512
+            }
+        },
+        {
+            type: "text",
+            content: "Hello world! Hello world! Hello world! Hello world! Hello world!",
+            fontFamily: "Consolas",
+            fontSize: 50,
+            textAlign: "center",
+            verticalAlign: "center",
             size: {
                 width: 700,
                 height: 512

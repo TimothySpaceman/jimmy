@@ -1,10 +1,26 @@
 import Preview from "./components/preview/preview.tsx";
 import type {JimmyConfig} from "@/lib/core/types.ts";
+import {ResizablePanel, ResizablePanelGroup} from "@/components/ui/resizable.tsx";
+import {JimmyProvider} from "@/components/jimmyProvider/jimmyProvider.tsx";
+import Editor from "@/components/editor/editor.tsx";
+import {ThemeProvider} from "@/components/themeProvider/themeProvider.tsx";
 
 export default function App() {
-    return <main className="h-screen w-screen">
-        <Preview config={config}/>
-    </main>
+    return <ThemeProvider defaultTheme="dark">
+        <JimmyProvider initialConfig={config}>
+            <main className="h-screen w-screen dark">
+                <ResizablePanelGroup>
+                    <ResizablePanel defaultSize="50%">
+                        <Editor/>
+                    </ResizablePanel>
+                    <div className="h-full w-[--spacing(0.5)] bg-border"></div>
+                    <ResizablePanel>
+                        <Preview/>
+                    </ResizablePanel>
+                </ResizablePanelGroup>
+            </main>
+        </JimmyProvider>
+    </ThemeProvider>
 }
 
 const config: JimmyConfig = {

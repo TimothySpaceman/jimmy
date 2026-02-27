@@ -1,4 +1,4 @@
-import type {JimmyNodeMap} from "./types"
+import type {JimmyConfig, JimmyNodeMap} from "./types"
 
 export const defaults = {
     text: {
@@ -20,3 +20,12 @@ type Defaults = typeof defaults
 export type WithDefaults<K extends keyof JimmyNodeMap> =
     Omit<JimmyNodeMap[K], keyof Defaults> &
     Required<Defaults[K]>
+
+export const defaultConfig: JimmyConfig = {
+    title: "Jimmage",
+    canvas: {
+        width: 1920,
+        height: 1080,
+    },
+    nodes: []
+}

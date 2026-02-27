@@ -1,15 +1,13 @@
-import type {JimmyConfig} from "@/lib/core/types.ts"
 import {type MouseEvent, useEffect, useRef, useState, type WheelEvent} from "react";
 import Node from "./nodes/node.tsx"
+import {useJimmy} from "@/components/jimmyProvider/jimmyProvider.tsx";
 
 const SCALE_SENSITIVITY = 1 / 1500;
 const DEFAULT_GAP = 25;
 
-type Props = {
-    config: JimmyConfig,
-}
+export default function Preview() {
+    const {config} = useJimmy();
 
-export default function Preview({config}: Props) {
     const containerRef = useRef<HTMLDivElement>(null)
 
     const [scale, setScale] = useState(1);
@@ -68,14 +66,14 @@ export default function Preview({config}: Props) {
 
     return <div
         ref={containerRef}
-        className="w-full h-full overflow-hidden flex items-center justify-center bg-zinc-950"
+        className="w-full h-full overflow-hidden flex items-center justify-center bg-background"
         onWheel={handleWheel}
         onMouseUp={handleMouseUp}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
     >
         <div
-            className="relative border border-zinc-700 overflow-hidden flex-shrink-0 origin-center"
+            className="relative border border-border overflow-hidden flex-shrink-0 origin-center"
             style={previewStyle}
         >
             {config.nodes.map(node => <Node node={node} key={btoa(JSON.stringify(node))}/>)}

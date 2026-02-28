@@ -13,6 +13,9 @@ export default function TextNode({node}: Props) {
     const spanStyle = {
         ...nodeStyle,
         fontSize: `${fontSize}px`,
+        width: "100%",
+        height: "100$",
+        display: "block"
     }
 
     const divStyle = {

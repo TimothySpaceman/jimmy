@@ -1,5 +1,5 @@
 import {useJimmy} from "@/components/jimmyProvider/jimmyProvider.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Button} from "@/components/ui/button.tsx";
 import {Pencil, Save} from "lucide-react";
 import {Input} from "@/components/ui/input.tsx";
@@ -20,8 +20,13 @@ export default function MetadataEditor() {
         setEditing(false)
     }
 
+    useEffect(() => {
+        setTitle(config.title);
+        setDescription(config.description);
+    }, [config]);
+
     if (!editing) {
-        return <div className="flex flex-col gap-2">
+        return <div className="flex flex-col gap-2 grow-1">
             <div className="flex justify-between gap-2">
                 <h1 className="text-foreground text-2xl font-bold">
                     {config.title}
@@ -37,7 +42,7 @@ export default function MetadataEditor() {
     }
 
     return <div className="flex flex-col gap-2">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-2">
             <Input
                 placeholder="Title"
                 minLength={1}

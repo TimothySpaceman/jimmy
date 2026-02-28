@@ -100,11 +100,11 @@ const allowedImageTypes = [
 function FileUploadButton({onChange}: FileUploadProps) {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleClick = () => {
+    function handleClick() {
         inputRef.current?.click();
-    };
+    }
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    function handleChange(event: ChangeEvent<HTMLInputElement>) {
         const file = event.target.files?.[0];
         if (!file) return;
         if (!allowedImageTypes.includes(file.type)) {
@@ -115,11 +115,10 @@ function FileUploadButton({onChange}: FileUploadProps) {
         const reader = new FileReader();
         reader.onload = () => {
             const result = reader.result as string;
-            console.log(result.length)
             onChange(result);
         };
         reader.readAsDataURL(file);
-    };
+    }
 
     return (
         <>
@@ -130,7 +129,7 @@ function FileUploadButton({onChange}: FileUploadProps) {
                 className="hidden"
                 accept={allowedImageTypes.join(", ")}
             />
-            <Button onClick={handleClick} variant="outline">
+            <Button onClick={handleClick} variant="outline" size="icon">
                 <FileUp/>
             </Button>
         </>

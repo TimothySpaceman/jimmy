@@ -103,7 +103,7 @@ function AddNodeButton({onPick}: AddNodeProps) {
     }
 
     return <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon"> <Plus/> </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>

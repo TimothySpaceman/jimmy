@@ -18,7 +18,7 @@ export default function SizeEditor({node, onChange}: Props) {
         onChange({
             size: {
                 ...node.size,
-                [e.target.name]: e.target.value
+                [e.target.name]: +e.target.value
             }
         })
     }

@@ -122,7 +122,7 @@ export default function TextNodeEditor({node, onChange}: Props) {
                             type="number"
                             min={1}
                             value={node.fontSize}
-                            onChange={handleInputChange}
+                            onChange={e => handleChange("fontSize", +e.target.value)}
                         />
                     </Field>
                     <Field className="gap-2" orientation="responsive">

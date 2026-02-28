@@ -6,14 +6,18 @@ import {Input} from "@/components/ui/input.tsx";
 export default function CanvasEditor() {
     const {config, setConfig} = useJimmy();
 
-    function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    function handleChange(key: string, value: any) {
         setConfig(prev => ({
             ...prev,
             canvas: {
                 ...prev.canvas,
-                [e.target.name]: e.target.value
+                [key]: value
             },
         }))
+    }
+
+    function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+        handleChange(e.target.name, e.target.value)
     }
 
     return <FieldSet>
@@ -27,7 +31,7 @@ export default function CanvasEditor() {
                     type="number"
                     min={1}
                     value={config.canvas.width}
-                    onChange={handleChange}
+                    onChange={e => handleChange("width", +e.target.value)}
                 />
             </Field>
             <Field className="gap-2" orientation="responsive">
@@ -38,7 +42,7 @@ export default function CanvasEditor() {
                     type="number"
                     min={1}
                     value={config.canvas.height}
-                    onChange={handleChange}
+                    onChange={e => handleChange("height", +e.target.value)}
                 />
             </Field>
             <Field className="gap-2" orientation="responsive">
@@ -49,7 +53,7 @@ export default function CanvasEditor() {
                     name="background"
                     type="color"
                     value={config.canvas.background}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
             </Field>
         </FieldGroup>

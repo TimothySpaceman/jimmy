@@ -5,7 +5,11 @@ import {Pencil, Save} from "lucide-react";
 import {Input} from "@/components/ui/input.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
 
-export default function MetadataEditor() {
+type Props = {
+    editable?: boolean
+}
+
+export default function MetadataEditor({editable}: Props) {
     const {config, setConfig} = useJimmy()
     const [editing, setEditing] = useState(false);
     const [title, setTitle] = useState(config.title);
@@ -25,15 +29,19 @@ export default function MetadataEditor() {
         setDescription(config.description);
     }, [config]);
 
-    if (!editing) {
+    if (!editable || !editing) {
         return <div className="flex flex-col gap-2 grow-1">
             <div className="flex justify-between gap-2">
                 <h1 className="text-foreground text-2xl font-bold">
                     {config.title}
                 </h1>
-                <Button variant="outline" onClick={() => setEditing(true)} size="icon">
+                {editable && <Button
+                    variant="outline"
+                    onClick={() => setEditing(true)}
+                    size="icon"
+                >
                     <Pencil/>
-                </Button>
+                </Button>}
             </div>
             {config.description && <p className="text-secondary-foreground">
                 {config.description}

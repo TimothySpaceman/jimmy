@@ -46,19 +46,21 @@ export default function CodeEditor() {
         }
     }, [debounceDraft])
 
-    return <div className="h-screen flex flex-col">
-        {errors.length > 0 && <div className="bg-destructive text-foreground p-1">
+    return <div className="flex-1 min-h-0 flex flex-col">
+        <div className="flex-1 min-h-0 overflow-hidden">
+            <MonacoEditor
+                className="h-full"
+                theme="vs-dark"
+                defaultLanguage="json"
+                value={draft}
+                onChange={value => setDraft(value ?? "")}
+            />
+        </div>
+        {errors.length > 0 && <div className="shrink-0 bg-destructive text-foreground p-1">
             {errors.map(e => <div>
                 <p>{e.message}</p>
                 <p className="opacity-75">{e.path.join(".")}</p>
             </div>)}
         </div>}
-        <MonacoEditor
-            className="h-full"
-            theme="vs-dark"
-            defaultLanguage="json"
-            value={draft}
-            onChange={value => setDraft(value ?? "")}
-        />
     </div>;
 }

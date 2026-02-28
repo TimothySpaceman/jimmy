@@ -5,20 +5,36 @@ import NodesEditor from "@/components/editor/nodesEditor/nodesEditor.tsx";
 import UpDownLoad from "@/components/editor/upDownLoad.tsx";
 import {useState} from "react";
 import CodeEditor from "@/components/editor/codeEditor.tsx";
+import {Button} from "@/components/ui/button.tsx";
+import {FileBraces, SlidersHorizontal} from "lucide-react";
 
 
 export default function Editor() {
     const [isMonaco, setIsMonaco] = useState(true);
 
-    if(isMonaco){
-        return <CodeEditor/>
-    }
+    const SwitcherIcon = isMonaco ? SlidersHorizontal : FileBraces;
 
-    return <div className="px-3 py-2 w-full h-full flex flex-col gap-2 bg-background">
-        <div className="flex gap-1">
-            <MetadataEditor/>
+    return <div className="relative w-full h-full flex flex-col bg-background">
+        <div className="px-3 py-2 flex gap-1">
+            <MetadataEditor editable={!isMonaco}/>
             <UpDownLoad/>
+            <Button
+                size="icon"
+                variant="outline"
+                onClick={() => {
+                    setIsMonaco(prev => !prev)
+                }}
+            >
+                <SwitcherIcon/>
+            </Button>
         </div>
+        {isMonaco && <CodeEditor/>}
+        {!isMonaco && <InteractiveEditor/>}
+    </div>
+}
+
+function InteractiveEditor() {
+    return <div className="px-3 py-2 flex flex-col gap-2">
         <Separator/>
         <CanvasEditor/>
         <Separator/>

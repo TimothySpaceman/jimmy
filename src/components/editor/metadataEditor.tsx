@@ -41,7 +41,7 @@ export default function MetadataEditor() {
         </div>
     }
 
-    return <div className="flex flex-col gap-2">
+    return <div className="flex flex-col gap-2 grow-1">
         <div className="flex justify-between gap-2">
             <Input
                 placeholder="Title"

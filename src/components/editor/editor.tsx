@@ -7,10 +7,11 @@ import {useState} from "react";
 import CodeEditor from "@/components/editor/codeEditor.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {FileBraces, SlidersHorizontal} from "lucide-react";
+import Render from "@/components/render/render.tsx";
 
 
 export default function Editor() {
-    const [isMonaco, setIsMonaco] = useState(true);
+    const [isMonaco, setIsMonaco] = useState(false);
 
     const SwitcherIcon = isMonaco ? SlidersHorizontal : FileBraces;
 
@@ -18,6 +19,7 @@ export default function Editor() {
         <div className="px-3 py-2 flex gap-1">
             <MetadataEditor editable={!isMonaco}/>
             <UpDownLoad/>
+            <Render/>
             <Button
                 size="icon"
                 variant="outline"

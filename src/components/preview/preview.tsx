@@ -1,6 +1,6 @@
 import {type MouseEvent, useEffect, useRef, useState, type WheelEvent} from "react";
-import Node from "@/components/preview/nodes/node.tsx"
 import {useJimmy} from "@/components/jimmyProvider/jimmyProvider.tsx";
+import PreviewCanvas from "@/components/preview/previewCanvas.tsx";
 
 const SCALE_SENSITIVITY = 1 / 1500;
 const DEFAULT_GAP = 25;
@@ -57,10 +57,7 @@ export default function Preview() {
         }));
     }
 
-    const previewStyle = {
-        width: `${config.canvas.width}px`,
-        height: `${config.canvas.height}px`,
-        backgroundColor: config.canvas.background,
+    const canvasStyle = {
         transform: `translate(${shift.x}px, ${shift.y}px) scale(${scale})`,
     }
 
@@ -72,11 +69,6 @@ export default function Preview() {
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
     >
-        <div
-            className="relative box-content overflow-hidden flex-shrink-0 origin-center"
-            style={previewStyle}
-        >
-            {config.nodes.map(node => <Node node={node} key={btoa(JSON.stringify(node))}/>)}
-        </div>
+        <PreviewCanvas config={config} style={canvasStyle} className="flex-shrink-0 origin-center"/>
     </div>
 }
